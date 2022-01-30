@@ -1,0 +1,35 @@
+specVersion: 0.0.2
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: ENSRegistry
+    network: ropsten
+    source:
+      address: "0xA18d0659f86f32EEF95Fd729674C8BF60a20d3C6"
+      abi: ENSRegistry
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - NewOwner
+        - Transfer
+        - NewResolver
+        - NewTTL
+        - ApprovalForAll
+      abis:
+        - name: ENSRegistry
+          file: ENSRegistry\abis\ENSRegistry.json
+      eventHandlers:
+        - event: NewOwner(indexed bytes32,indexed bytes32,address)
+          handler: handleNewOwner
+        - event: Transfer(indexed bytes32,address)
+          handler: handleTransfer
+        - event: NewResolver(indexed bytes32,address)
+          handler: handleNewResolver
+        - event: NewTTL(indexed bytes32,uint64)
+          handler: handleNewTTL
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+      file: ENSRegistry\ENSRegistry.wasm
