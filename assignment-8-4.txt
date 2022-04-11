@@ -1,0 +1,3 @@
+Q.1. display array elements in Ordered List (forEach)
+Q.2. take any array having employee names. Show only those employees whose names starts with 'A' or 'a'
+Implement this using filter method
